@@ -1,4 +1,4 @@
 # FitPath
 
 
-Please view the project under the 'master' branch.
+Please view the project under the `master` branch.
