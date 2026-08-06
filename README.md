@@ -84,7 +84,7 @@ Prerequisites: Python 3.14 (the repo ships a `.venv`) and Node.js (for the
 frontend build).
 
 ```powershell
-cd C:\Users\t-zinaokoye\projects\rhythm-fit
+cd rhythm-fit
 
 # 1. (First time only) install dependencies
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
