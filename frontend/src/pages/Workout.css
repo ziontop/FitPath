@@ -1,0 +1,555 @@
+/* ============================================================
+   Workout — page-specific styles.
+   CONVENTION: every selector is prefixed `wk-` so pages never
+   collide on shared CSS. Do NOT reuse these classes elsewhere.
+   Shared design-system classes/components come from styles/* + ui/*.
+   ============================================================ */
+
+/* ---- Start view: today's session ---- */
+.wk-today__name {
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-h4);
+}
+.wk-today__note {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: var(--text-muted);
+}
+
+/* ---- Adaptive deload / resume banner ---- */
+.wk-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--color-secondary);
+  background: var(--surface-2);
+}
+.wk-banner--resume {
+  border-left-color: var(--color-primary);
+}
+.wk-banner__icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+}
+.wk-banner--resume .wk-banner__icon {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+.wk-banner__body {
+  min-width: 0;
+}
+.wk-banner__title {
+  display: block;
+  font-size: var(--fs-sm);
+}
+.wk-banner__text {
+  margin: 2px 0 0;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ---- Adaptive plan list (start view) ---- */
+.wk-plan {
+  display: flex;
+  flex-direction: column;
+}
+.wk-plan__row {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-start;
+  padding: var(--sp-3) 0;
+  border-top: 1px solid var(--surface-3);
+}
+.wk-plan__row:first-child {
+  border-top: none;
+}
+.wk-plan__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.wk-plan__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+.wk-plan__name {
+  font-weight: var(--fw-medium);
+}
+.wk-plan__scheme {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+.wk-plan__weight {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  font-variant-numeric: var(--numeric);
+  white-space: nowrap;
+}
+
+/* Action chip: one status tint; volt only for the positive "increase". */
+.wk-act {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  background: var(--surface-3);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.wk-act--increase {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+.wk-act--reduce {
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+.wk-act--deload,
+.wk-act--resume {
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+}
+.wk-act--start {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+.wk-act__delta {
+  font-family: var(--font-mono);
+  font-variant-numeric: var(--numeric);
+}
+
+/* Disclosure: the concise "why" behind the adapted target */
+.wk-why {
+  margin-top: 2px;
+}
+.wk-why__summary {
+  cursor: pointer;
+  width: fit-content;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--color-primary);
+  list-style: none;
+}
+.wk-why__summary::-webkit-details-marker {
+  display: none;
+}
+.wk-why__summary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+.wk-why__text {
+  margin: 6px 0 0;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.wk-why__basis {
+  margin: 4px 0 0;
+  font-size: var(--fs-xs);
+  color: var(--text-subtle);
+}
+
+.wk-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+
+.wk-restday {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-2) 0 var(--sp-1);
+}
+.wk-restday__icon {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+}
+
+/* Leading index badge in the plan list */
+.wk-num {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: var(--radius-circle);
+  display: grid;
+  place-items: center;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-family: var(--font-head);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+}
+
+/* Small calendar badge for recent sessions */
+.wk-rec-ico {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--surface-3);
+  color: var(--text-muted);
+}
+
+/* Neutral mono weight / volume value (trailing) — instrument, not a pill */
+.wk-weight-val {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  font-variant-numeric: var(--numeric);
+  white-space: nowrap;
+}
+
+/* ---- Active session: sticky header bar ---- */
+.wk-page.wk-page--resting {
+  padding-bottom: 200px;
+}
+
+.wk-bar {
+  position: sticky;
+  top: calc(var(--topbar-h) + env(safe-area-inset-top, 0px));
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border-radius: var(--radius-lg);
+  background: var(--surface-glass-strong);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+  border: 1px solid var(--surface-glass-border);
+  box-shadow: var(--shadow-sm);
+}
+@media (min-width: 900px) {
+  .wk-bar {
+    top: var(--sp-3);
+  }
+}
+.wk-bar__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+.wk-bar__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-width: 0;
+}
+.wk-bar__icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+.wk-bar__head {
+  min-width: 0;
+}
+.wk-bar__title {
+  margin: 0;
+  font-size: var(--fs-h3);
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wk-bar__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 0;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+.wk-bar__sep {
+  width: 3px;
+  height: 3px;
+  border-radius: var(--radius-circle);
+  background: var(--text-subtle);
+}
+.wk-bar__progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.wk-bar__progress-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.wk-bar__count {
+  font-family: var(--font-head);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+/* ---- Exercise cards ---- */
+.wk-exercises {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.wk-ex__sub {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-3);
+  margin: calc(-1 * var(--sp-2)) 0 var(--sp-3);
+}
+.wk-scheme {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.wk-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+}
+.wk-count--done {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+.wk-suggest {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.wk-suggest__val {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  font-variant-numeric: var(--numeric);
+}
+
+/* ---- Set table ---- */
+.wk-sets {
+  display: flex;
+  flex-direction: column;
+}
+.wk-set {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 0.95fr) minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 0.7fr) 62px;
+  gap: var(--sp-2);
+  align-items: center;
+  min-height: 46px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--surface-3);
+}
+.wk-set:last-child {
+  border-bottom: none;
+}
+.wk-set-head {
+  min-height: 0;
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--border);
+}
+.wk-set-head span {
+  text-align: center;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-subtle);
+  font-weight: var(--fw-semibold);
+}
+.wk-set__badge {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  border-radius: var(--radius-circle);
+  display: grid;
+  place-items: center;
+  background: var(--surface-3);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+}
+.wk-set__badge--warmup {
+  background: color-mix(in srgb, var(--color-warning) 15%, var(--surface));
+  color: var(--color-warning);
+}
+/* "Previous" column: what you lifted last time, muted so live values lead */
+.wk-set__prev {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text-subtle);
+  font-variant-numeric: var(--numeric);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wk-set__val {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.wk-set__val--muted {
+  color: var(--text-subtle);
+}
+.wk-set--warmup .wk-set__val {
+  color: var(--text-muted);
+}
+.wk-set__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+.wk-set--editing .input {
+  height: 38px;
+  padding: 6px 8px;
+  text-align: center;
+  border-radius: var(--radius-sm);
+}
+
+/* ---- Add-set controls ---- */
+.wk-addset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 1px dashed var(--border-strong);
+}
+.wk-addset__fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-2);
+  align-items: center;
+}
+.wk-addset .input {
+  height: 44px;
+  text-align: center;
+  padding: 10px;
+}
+.wk-addset__btn {
+  grid-column: 1 / -1;
+}
+@media (min-width: 560px) {
+  .wk-addset__fields {
+    grid-template-columns: 1fr 1fr 1fr auto;
+  }
+  .wk-addset__btn {
+    grid-column: auto;
+    white-space: nowrap;
+  }
+}
+
+/* ---- Rest timer: fixed focal bottom bar ---- */
+.wk-restbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--bottomnav-h) + env(safe-area-inset-bottom, 0px));
+  z-index: 60;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--sp-4);
+  pointer-events: none;
+  animation: wk-restbar-in var(--dur-slow) var(--ease-spring) both;
+}
+.wk-restbar__inner {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 520px;
+}
+.wk-restbar__inner .rest-timer {
+  box-shadow: var(--shadow-xl);
+  border-radius: var(--radius-xl);
+}
+@media (min-width: 900px) {
+  .wk-restbar {
+    left: var(--sidebar-w);
+    bottom: var(--sp-5);
+  }
+}
+@keyframes wk-restbar-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Loading skeleton ---- */
+.wk-skel-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+}
+.wk-skel-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+.wk-skel-row > :first-child {
+  flex: 1;
+}
+
+/* ---- Narrow-screen tuning ---- */
+@media (max-width: 560px) {
+  .wk-set {
+    grid-template-columns: 26px minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 0.7fr) minmax(0, 0.6fr) 58px;
+    gap: 6px;
+  }
+  .wk-bar__title {
+    font-size: var(--fs-h4);
+  }
+}

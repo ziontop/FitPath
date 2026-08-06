@@ -1,0 +1,375 @@
+/* ============================================================
+   FitPath design tokens — "Ridgeline" design system
+   Dark-first, high-contrast performance instrument.
+   Light (default) + Dark ([data-theme="dark"]) themes.
+
+   Conventions:
+   - Legacy var names are preserved as aliases mapped onto Ridgeline,
+     so existing pages keep compiling and rendering.
+   - Colors meet WCAG AA contrast in both themes.
+   - Elevation uses neutral, low-spread shadows (no colored glow).
+   - Numerals use tabular lining figures for instrument-like data.
+   ============================================================ */
+
+:root {
+  /* ---- Brand: indigo-violet primary ---- */
+  --color-primary: #5b57e0;
+  --color-primary-hover: #4b47c7;
+  --color-primary-active: #3e3aae;
+  --color-primary-soft: #eeedfc; /* ghost/secondary hover, selected chip, soft fills */
+  --color-primary-contrast: #ffffff;
+
+  /* ---- Energy accent: volt (RESERVE for PRs / streaks / goal completion) ---- */
+  --color-accent: #c4f439;
+  --color-accent-strong: #7cb518; /* AA-legible volt for text/icons on light surfaces */
+  --color-accent-soft: #f2fbdd;
+  --color-accent-contrast: #12210a;
+
+  /* ---- Secondary / data-viz cyan (reserved for charts, info, hydration) ---- */
+  --color-secondary: #0e8aa3;
+  --color-secondary-hover: #0b7488;
+  --color-secondary-soft: #e2f5f9;
+
+  /* ---- Semantic ---- */
+  --color-success: #16a34a;
+  --color-success-soft: #e7f7ec;
+  --color-warning: #d97706;
+  --color-warning-soft: #fdf1e3;
+  --color-error: #dc2626;
+  --color-error-hover: #b91c1c;
+  --color-error-soft: #fdecec;
+  --color-info: #0e8aa3;
+  --color-info-soft: #e2f5f9;
+
+  /* Named semantic aliases */
+  --color-tertiary: var(--color-success);
+  --color-cyan: #0891b2;
+  --color-green: var(--color-success);
+  --color-amber: var(--color-warning);
+  --color-red: var(--color-error);
+  --color-violet: #7c78f0;
+
+  /* ---- Surfaces & text (cool ink/graphite neutrals) ---- */
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #f1f3f6;
+  --surface-3: #e9ecf1;
+  --border: #e3e7ed;
+  --border-strong: #cfd5de;
+  --border-hover: #b7bfcb;
+
+  --text: #0e1420;
+  --text-muted: #566072;
+  --text-subtle: #8a93a3;
+  --text-on-primary: #ffffff;
+
+  --input-bg: #ffffff;
+  --input-error-bg: #fdecec;
+  --input-disabled-bg: #f1f3f6;
+
+  /* Elevated / frosted-glass surface (sticky bars, overlays) */
+  --surface-glass: color-mix(in srgb, var(--surface) 74%, transparent);
+  --surface-glass-strong: color-mix(in srgb, var(--surface) 88%, transparent);
+  --surface-glass-border: color-mix(in srgb, var(--border) 70%, transparent);
+  --blur-glass: blur(14px) saturate(1.4);
+
+  /* Skeleton shimmer */
+  --skeleton-base: #e9ecf1;
+  --skeleton-shine: rgba(255, 255, 255, 0.6);
+
+  /* ---- Status chip palette (in-progress uses indigo, never orange) ---- */
+  --chip-completed-bg: #d6f3e0;
+  --chip-completed-text: #157347;
+  --chip-inprogress-bg: var(--color-primary-soft);
+  --chip-inprogress-text: var(--color-primary-active);
+  --chip-notstarted-bg: #eef0f4;
+  --chip-notstarted-text: #6b7686;
+  --chip-locked-bg: #e9ecf1;
+  --chip-locked-text: #8a93a3;
+
+  /* ---- Activity ring palette: Move=indigo · Exercise=volt · Hydrate=cyan ---- */
+  --ring-move-from: #6d69f0;
+  --ring-move-to: #5b57e0;
+  --ring-exercise-from: #d6f75f;
+  --ring-exercise-to: #a6cf2f;
+  --ring-hydrate-from: #38c6e0;
+  --ring-hydrate-to: #0e8aa3;
+  --ring-track: #e9ecf1;
+
+  /* ---- Chart tokens (2px lines, faint grid, volt PR markers) ---- */
+  --chart-1: #5b57e0; /* primary series (indigo) */
+  --chart-2: #0e8aa3; /* secondary series (cyan) */
+  --chart-3: #7cb518; /* tertiary series (volt) */
+  --chart-4: #d97706; /* quaternary series (amber) */
+  --chart-pr: #7cb518; /* PR / milestone marker (volt) */
+  --chart-grid: #e6e9ef;
+  --chart-axis: #8a93a3;
+  --chart-area-opacity: 0.1;
+
+  /* ---- Gradients (single-hue indigo only; no orange, no orange->blue AI) ---- */
+  --gradient-brand: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-active) 100%);
+  --gradient-brand-vivid: linear-gradient(135deg, #6d69f0 0%, var(--color-primary) 100%);
+  --gradient-ai: linear-gradient(135deg, var(--color-primary) 0%, #6d69f0 100%);
+  --gradient-surface: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+  --gradient-hero: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--color-primary) 8%, var(--surface)) 0%,
+    var(--surface) 62%
+  );
+  --gradient-sheen: linear-gradient(
+    180deg,
+    color-mix(in srgb, #ffffff 32%, transparent) 0%,
+    transparent 60%
+  );
+
+  /* ---- Typography — Space Grotesk (display) + Inter (UI/body) ---- */
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-head: var(--font-display);
+  --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-num: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Space Grotesk', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  /* Tabular lining figures for all data (metrics, timers, tables, charts). */
+  --numeric: tabular-nums lining-nums;
+
+  /* Type scale — size / line-height / weight */
+  --fs-display: 2.5rem;
+  --lh-display: 1.05;
+  --fs-h1: 2rem;
+  --lh-h1: 1.14;
+  --fs-h2: 1.6rem;
+  --lh-h2: 1.2;
+  --fs-h3: 1.35rem;
+  --lh-h3: 1.25;
+  --fs-h4: 1.125rem;
+  --lh-h4: 1.35;
+  --fs-body: 1rem;
+  --lh-body: 1.55;
+  --fs-sm: 0.875rem;
+  --lh-sm: 1.5;
+  --fs-xs: 0.75rem;
+  --lh-xs: 1.4;
+  --fs-metric: 2.25rem; /* glanceable big numbers */
+  --lh-metric: 1.02;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --tracking-tight: -0.01em;
+  --tracking-tighter: -0.02em;
+  --tracking-wide: 0.06em;
+
+  /* ---- Spacing scale (base 8px) ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+
+  /* Card density (tighter than v1) */
+  --card-pad: 20px;
+  --card-pad-lg: 24px;
+
+  /* ---- Border radius — tight geometry (8 / 10 / 14, 18 for one hero) ---- */
+  --radius-sm: 8px;
+  --radius-md: 10px; /* controls: buttons, inputs, chips-square */
+  --radius-lg: 14px; /* cards */
+  --radius-xl: 18px; /* one hero surface max */
+  --radius-pill: 9999px;
+  --radius-circle: 50%;
+
+  /* ---- Elevation — neutral, low-spread shadows ---- */
+  --shadow-xs: 0 1px 2px rgba(14, 20, 32, 0.04);
+  --shadow-sm: 0 1px 2px rgba(14, 20, 32, 0.06), 0 1px 1px rgba(14, 20, 32, 0.04);
+  --shadow-md: 0 2px 6px -2px rgba(14, 20, 32, 0.08), 0 4px 12px -4px rgba(14, 20, 32, 0.06);
+  --shadow-lg: 0 6px 16px -6px rgba(14, 20, 32, 0.12), 0 12px 28px -10px rgba(14, 20, 32, 0.1);
+  --shadow-xl: 0 12px 24px -8px rgba(14, 20, 32, 0.14), 0 28px 52px -14px rgba(14, 20, 32, 0.18);
+  /* Legacy "primary" shadows are now neutral (no colored glow). */
+  --shadow-primary: var(--shadow-sm);
+  --shadow-primary-lg: var(--shadow-md);
+
+  /* ---- Focus ring (accessible, indigo) ---- */
+  --focus-ring-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  --shadow-focus: 0 0 0 3px var(--focus-ring-color);
+  --shadow-focus-offset: 0 0 0 2px var(--surface), 0 0 0 4px var(--focus-ring-color);
+
+  /* ---- Motion — confident 120–220ms ease-out, no overshoot ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  /* No-bounce alias: "spring" now decelerates cleanly (removes overshoot). */
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 120ms;
+  --dur: 180ms;
+  --dur-slow: 220ms;
+  --dur-slower: 280ms;
+  /* Legacy aliases (kept working) */
+  --transition-fast: var(--dur-fast) var(--ease-standard);
+  --transition: var(--dur) var(--ease-standard);
+
+  /* ---- Layout ---- */
+  --sidebar-w: 256px;
+  --bottomnav-h: 66px;
+  --content-max: 1120px;
+  --topbar-h: 60px;
+
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  /* ---- Brand ---- */
+  --color-primary: #8b87ff;
+  --color-primary-hover: #a29eff;
+  --color-primary-active: #7b76f5;
+  --color-primary-soft: rgba(139, 135, 255, 0.16);
+  --color-primary-contrast: #0b0f14;
+
+  /* ---- Energy accent: volt ---- */
+  --color-accent: #cbff47;
+  --color-accent-strong: #cbff47;
+  --color-accent-soft: rgba(203, 255, 71, 0.16);
+  --color-accent-contrast: #0e1a05;
+
+  /* ---- Secondary / cyan ---- */
+  --color-secondary: #38bdf8;
+  --color-secondary-hover: #5ccbf9;
+  --color-secondary-soft: rgba(56, 189, 248, 0.16);
+
+  /* ---- Semantic ---- */
+  --color-success: #34d399;
+  --color-success-soft: rgba(52, 211, 153, 0.16);
+  --color-warning: #fbbf24;
+  --color-warning-soft: rgba(251, 191, 36, 0.16);
+  --color-error: #f87171;
+  --color-error-hover: #ef4444;
+  --color-error-soft: rgba(248, 113, 113, 0.16);
+  --color-info: #38bdf8;
+  --color-info-soft: rgba(56, 189, 248, 0.16);
+
+  --color-cyan: #38bdf8;
+  --color-violet: #a29eff;
+
+  /* ---- Surfaces & text (near-black, layered) ---- */
+  --bg: #0b0f14;
+  --surface: #12171f;
+  --surface-2: #171e28;
+  --surface-3: #1e2733;
+  --border: #232c38;
+  --border-strong: #33404f;
+  --border-hover: #465468;
+
+  --text: #eaeef3;
+  --text-muted: #a3adbb;
+  --text-subtle: #6b7686;
+  --text-on-primary: #0b0f14;
+
+  --input-bg: #12171f;
+  --input-error-bg: rgba(248, 113, 113, 0.14);
+  --input-disabled-bg: #171e28;
+
+  --surface-glass: color-mix(in srgb, var(--surface) 70%, transparent);
+  --surface-glass-strong: color-mix(in srgb, var(--surface) 86%, transparent);
+  --surface-glass-border: color-mix(in srgb, var(--border) 72%, transparent);
+
+  --skeleton-base: #1b2433;
+  --skeleton-shine: rgba(255, 255, 255, 0.05);
+
+  /* ---- Status chip palette ---- */
+  --chip-completed-bg: rgba(52, 211, 153, 0.16);
+  --chip-completed-text: #5be5a4;
+  --chip-inprogress-bg: rgba(139, 135, 255, 0.18);
+  --chip-inprogress-text: #b3b0ff;
+  --chip-notstarted-bg: rgba(148, 163, 184, 0.14);
+  --chip-notstarted-text: #a3adbb;
+  --chip-locked-bg: rgba(100, 116, 139, 0.14);
+  --chip-locked-text: #6b7686;
+
+  /* ---- Rings ---- */
+  --ring-move-from: #a29eff;
+  --ring-move-to: #8b87ff;
+  --ring-exercise-from: #d8ff6b;
+  --ring-exercise-to: #cbff47;
+  --ring-hydrate-from: #5ad6ef;
+  --ring-hydrate-to: #38bdf8;
+  --ring-track: #1e2733;
+
+  /* ---- Charts ---- */
+  --chart-1: #8b87ff;
+  --chart-2: #38bdf8;
+  --chart-3: #cbff47;
+  --chart-4: #fbbf24;
+  --chart-pr: #cbff47;
+  --chart-grid: #232c38;
+  --chart-axis: #6b7686;
+
+  /* ---- Gradients ---- */
+  --gradient-surface: linear-gradient(180deg, var(--surface) 0%, #0e131a 100%);
+  --gradient-hero: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--color-primary) 15%, var(--surface)) 0%,
+    var(--surface) 64%
+  );
+  --gradient-sheen: linear-gradient(
+    180deg,
+    color-mix(in srgb, #ffffff 6%, transparent) 0%,
+    transparent 60%
+  );
+
+  /* Dark elevation leans on surface steps + borders; shadows stay subtle. */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 2px 8px -2px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 16px 40px -12px rgba(0, 0, 0, 0.72);
+  --shadow-primary: var(--shadow-sm);
+  --shadow-primary-lg: var(--shadow-md);
+
+  color-scheme: dark;
+}
+
+/* ============================================================
+   Keyframes (entrance + loading) — consumed by utility classes
+   in base.css. Defined here so the whole app can reuse them.
+   Distances kept small for confident, low-drama entrances.
+   ============================================================ */
+@keyframes fp-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fp-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fp-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fp-shimmer {
+  from {
+    background-position: -150% 0;
+  }
+  to {
+    background-position: 150% 0;
+  }
+}

@@ -1,0 +1,387 @@
+/* ============================================================
+   Onboarding wizard — delightful multi-step profile setup.
+   CONVENTION: every selector is prefixed `onb-` so pages never
+   collide on shared CSS. Overrides of shared component classes
+   are scoped under an `onb-` ancestor. Do NOT edit styles/* or
+   components/*.
+   ============================================================ */
+
+/* ---- Shell ---- */
+.onb-page {
+  position: relative;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: clamp(var(--sp-4), 4vw, var(--sp-6)) var(--sp-4);
+  overflow: hidden;
+  background:
+    radial-gradient(1100px 520px at 100% -12%, color-mix(in srgb, var(--color-primary) 13%, transparent), transparent),
+    radial-gradient(900px 520px at -10% 112%, color-mix(in srgb, var(--color-primary) 9%, transparent), transparent),
+    var(--bg);
+}
+.onb-shell {
+  width: 100%;
+  max-width: 620px;
+}
+.onb-brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--sp-4);
+}
+.onb-card.card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---- Stepper ---- */
+.onb-steps {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin: 0 0 var(--sp-4);
+  padding: 0;
+}
+.onb-step {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  min-width: 0;
+}
+.onb-step::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  right: 50%;
+  left: -50%;
+  height: 2px;
+  background: var(--surface-3);
+  z-index: 0;
+}
+.onb-step:first-child::before {
+  display: none;
+}
+.onb-step.is-done::before,
+.onb-step.is-active::before {
+  background: var(--color-primary);
+}
+.onb-step__dot {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-circle);
+  display: grid;
+  place-items: center;
+  background: var(--surface-3);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+.onb-step.is-active .onb-step__dot {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  box-shadow: var(--shadow-primary);
+}
+.onb-step.is-done .onb-step__dot {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+.onb-step__label {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-weight: var(--fw-medium);
+}
+.onb-step.is-active .onb-step__label {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+/* ---- Progress bar ---- */
+.onb-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--sp-5);
+}
+.onb-progress__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-weight: var(--fw-medium);
+}
+
+/* ---- Step hero ---- */
+.onb-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-5);
+}
+.onb-hero__badge {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  margin-bottom: var(--sp-1);
+}
+.onb-hero__title {
+  font-family: var(--font-head);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+}
+.onb-hero__sub {
+  color: var(--text-muted);
+  max-width: 42ch;
+}
+
+/* ---- Step panel (animates in on change) ---- */
+.onb-panel {
+  animation: onb-step-in var(--dur-slow) var(--ease-out) both;
+}
+.onb-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+/* ---- Field label above grouped controls ---- */
+.onb-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.onb-fieldlabel {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+
+/* ---- Selectable option cards ---- */
+.onb-options {
+  display: grid;
+  gap: var(--sp-3);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.onb-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition),
+    transform var(--transition), background var(--transition);
+}
+.onb-option:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+.onb-option:active {
+  transform: translateY(0);
+  transition-duration: 80ms;
+}
+.onb-option:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+.onb-option.is-selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+  box-shadow: var(--shadow-primary);
+}
+.onb-option__ic {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--surface-3);
+  color: var(--text-muted);
+  transition: background var(--transition), color var(--transition);
+}
+.onb-option.is-selected .onb-option__ic {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+.onb-option__title {
+  font-weight: var(--fw-semibold);
+}
+.onb-option__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: var(--lh-sm);
+}
+.onb-option__check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--color-accent-strong);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity var(--transition), transform var(--transition);
+}
+.onb-option.is-selected .onb-option__check {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Day-of-week picker ---- */
+.onb-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+.onb-day {
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-head);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition),
+    color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.onb-day:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+.onb-day:active {
+  transform: translateY(0);
+  transition-duration: 80ms;
+}
+.onb-day:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+.onb-day.is-selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  box-shadow: var(--shadow-primary);
+}
+.onb-days__cap {
+  margin-top: var(--sp-1);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.onb-days__cap strong {
+  color: var(--text);
+}
+
+/* ---- Numeric input grid ---- */
+.onb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+.onb-grid__full {
+  grid-column: 1 / -1;
+}
+@media (max-width: 520px) {
+  .onb-grid {
+    grid-template-columns: 1fr;
+  }
+  .onb-step__label {
+    display: none;
+  }
+}
+
+/* ---- Navigation ---- */
+.onb-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+}
+
+/* ---- Celebration ---- */
+.onb-celebrate {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--sp-2);
+  padding: var(--sp-5);
+  background: var(--gradient-hero);
+  animation: onb-fade var(--dur) var(--ease-out) both;
+}
+.onb-celebrate__ic {
+  width: 76px;
+  height: 76px;
+  border-radius: var(--radius-circle);
+  display: grid;
+  place-items: center;
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
+  margin-bottom: var(--sp-2);
+  animation: onb-pop var(--dur-slower) var(--ease-spring) both;
+}
+.onb-celebrate__title {
+  font-family: var(--font-head);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+}
+.onb-celebrate__sub {
+  color: var(--text-muted);
+}
+
+/* ---- Motion ---- */
+@keyframes onb-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes onb-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes onb-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,360 @@
+/* ============================================================
+   Nutrition — page-specific styles.
+   CONVENTION: every selector is prefixed `nut-` so pages never
+   collide on shared CSS. Do NOT reuse these classes elsewhere.
+   Shared design-system classes/components come from styles/* + ui/*.
+   ============================================================ */
+
+/* ---- Calorie hero ---- */
+.nut-hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+.nut-hero--celebrate {
+  box-shadow: var(--shadow-md), 0 0 0 1px color-mix(in srgb, var(--color-accent-strong) 34%, transparent);
+}
+.nut-hero__main {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+}
+.nut-ring {
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+.nut-ring__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+.nut-ring__value {
+  font-family: var(--font-num);
+  font-size: 2.6rem;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  color: var(--text);
+  letter-spacing: var(--tracking-tight);
+  font-variant-numeric: var(--numeric);
+}
+.nut-ring__target {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-variant-numeric: var(--numeric);
+}
+.nut-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 3px 11px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+.nut-chip--under {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+.nut-chip--on {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+.nut-chip--over {
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+
+/* ---- Folded day-summary strip (was a separate tile row) ---- */
+.nut-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-2);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+}
+.nut-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.nut-stat__label {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-weight: var(--fw-medium);
+}
+.nut-stat__value {
+  font-family: var(--font-num);
+  font-size: 1.35rem;
+  font-weight: var(--fw-bold);
+  color: var(--text);
+  letter-spacing: var(--tracking-tight);
+  font-variant-numeric: var(--numeric);
+}
+.nut-stat__value i {
+  font-style: normal;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+}
+
+/* ---- Macro breakdown ---- */
+.nut-macros {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.nut-macro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.nut-macro__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-2);
+}
+.nut-macro__name {
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+}
+.nut-macro__val {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.nut-macro__pct {
+  margin-left: 8px;
+  font-family: var(--font-num);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  font-variant-numeric: var(--numeric);
+}
+.nut-macro__track {
+  height: 12px;
+  border-radius: var(--radius-pill);
+  background: var(--ring-track);
+  overflow: hidden;
+}
+.nut-macro__fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  transition: width var(--dur-slower) var(--ease-out);
+}
+.nut-macro__fill--protein {
+  background: var(--color-primary);
+}
+.nut-macro__fill--carbs {
+  background: var(--color-secondary);
+}
+.nut-macro__fill--fat {
+  background: var(--color-warning);
+}
+
+/* ---- Quick add ---- */
+.nut-quick__hint {
+  margin: -4px 0 var(--sp-3);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+.nut-quick__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  align-items: center;
+}
+.nut-quick__input {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+/* ---- Recents / favorites chips ---- */
+.nut-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.nut-relog {
+  gap: 6px;
+}
+.nut-relog__kcal {
+  color: var(--text-subtle);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-xs);
+}
+.nut-star {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-warning);
+}
+
+/* ---- Adaptive picks (based on your eating history) ---- */
+.nut-adapt__hint {
+  margin: -4px 0 var(--sp-3);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+.nut-adapt__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.nut-adapt__item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.nut-adapt__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+.nut-adapt__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  min-width: 0;
+  flex-wrap: wrap;
+}
+.nut-adapt__name {
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.nut-adapt__cat {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--text-subtle);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+.nut-adapt__macros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-variant-numeric: var(--numeric);
+}
+.nut-adapt__serving {
+  color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+}
+.nut-adapt__reason {
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.nut-adapt__meta {
+  font-size: var(--fs-xs);
+  color: var(--text-subtle);
+}
+
+/* ---- Meal groups ---- */
+.nut-groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+.nut-group__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-1);
+}
+.nut-group__ico {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--surface-3);
+  color: var(--text-muted);
+}
+.nut-group__ico--breakfast {
+  background: color-mix(in srgb, var(--color-warning) 16%, var(--surface));
+  color: var(--color-warning);
+}
+.nut-group__ico--lunch {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+.nut-group__ico--dinner {
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+}
+.nut-group__ico--snack {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+.nut-group__name {
+  font-family: var(--font-head);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-sm);
+}
+.nut-group__kcal {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.nut-meal__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: var(--fw-medium);
+}
+.nut-row__actions {
+  display: flex;
+  gap: 4px;
+}
+
+/* ---- Modal macro fields ---- */
+.nut-form-macros {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+}
+@media (max-width: 480px) {
+  .nut-form-macros {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Loading skeleton ---- */
+.nut-skel-macro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.nut-skel-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+}
+.nut-skel-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+.nut-skel-row > :first-child {
+  flex: 1;
+}

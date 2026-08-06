@@ -1,0 +1,238 @@
+/* ============================================================
+   Performance (Progress) — page-specific styles.
+   CONVENTION: every selector here is prefixed `perf-` so pages never
+   collide on shared CSS (other page agents run concurrently).
+   Recharts SVG needs explicit colors (see the theme palette in the
+   page); DOM chrome below uses tokens so it themes automatically.
+   ============================================================ */
+
+/* ---- Summary metric tiles ---- */
+.perf-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+@media (min-width: 760px) {
+  .perf-tiles {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---- PR cards ---- */
+.perf-pr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+@media (min-width: 700px) {
+  .perf-pr-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1000px) {
+  .perf-pr-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+.perf-pr {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.perf-pr__top {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+.perf-pr__rank {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+.perf-pr__name {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.perf-pr__e1rm {
+  font-family: var(--font-num);
+  font-size: 1.75rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.05;
+  color: var(--color-accent-strong);
+  letter-spacing: var(--tracking-tight);
+  font-variant-numeric: var(--numeric);
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+.perf-pr__unit {
+  font-size: 0.8rem;
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+}
+.perf-pr__sub {
+  font-size: var(--fs-xs);
+  color: var(--text-subtle);
+  font-family: var(--font-mono);
+  font-variant-numeric: var(--numeric);
+}
+.perf-pr-more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--sp-3);
+}
+
+/* ---- Charts ---- */
+.perf-chart {
+  width: 100%;
+  height: 300px;
+}
+.perf-chart--sm {
+  height: 240px;
+}
+.perf-charts2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+}
+@media (min-width: 860px) {
+  .perf-charts2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.perf-subchart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.perf-subchart__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+}
+.perf-subchart__name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.perf-subchart__title svg {
+  color: var(--color-primary);
+}
+.perf-delta {
+  font-family: var(--font-num);
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: var(--numeric);
+  color: var(--text-muted);
+}
+.perf-delta--up {
+  color: var(--color-accent-strong);
+}
+.perf-delta--down {
+  color: var(--text-muted);
+}
+
+/* Constrain the drill-down <select> that lives in the card header */
+.perf-select {
+  width: min(220px, 46vw);
+}
+
+/* Best-set summary chip */
+.perf-best {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.perf-best svg {
+  color: var(--color-accent-strong);
+  flex-shrink: 0;
+}
+.perf-best strong {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+}
+
+/* Empty chart placeholder */
+.perf-chart-empty {
+  height: 208px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  padding: var(--sp-4);
+}
+.perf-chart-empty__icon {
+  color: var(--text-subtle);
+}
+
+/* ---- Custom chart tooltip (real DOM → tokens theme it automatically) ---- */
+.perf-tip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 10px 12px;
+  min-width: 128px;
+}
+.perf-tip__label {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-weight: var(--fw-semibold);
+  margin-bottom: 6px;
+}
+.perf-tip__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+}
+.perf-tip__row + .perf-tip__row {
+  margin-top: 4px;
+}
+.perf-tip__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-circle);
+  flex-shrink: 0;
+}
+.perf-tip__name {
+  color: var(--text-muted);
+}
+.perf-tip__val {
+  margin-left: auto;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+/* ---- Loading skeleton ---- */
+.perf-skel-chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}

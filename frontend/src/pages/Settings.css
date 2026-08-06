@@ -1,0 +1,287 @@
+/* ============================================================
+   Settings — page-specific styles.
+   CONVENTION: every class here is prefixed `set-` so pages never
+   collide on shared CSS. Do NOT reuse these classes on other pages.
+   Shared design-system classes/components come from styles/* + ui/*.
+   ============================================================ */
+
+/* ---- Profile summary ---- */
+.set-profile {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+.set-avatar {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: var(--radius-circle);
+  display: grid;
+  place-items: center;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-family: var(--font-head);
+  font-weight: var(--fw-bold);
+  font-size: 1.25rem;
+}
+.set-profile__meta {
+  min-width: 0;
+}
+.set-profile__name {
+  font-family: var(--font-head);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  letter-spacing: var(--tracking-tight);
+}
+.set-profile__tags {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ---- Read-only profile facts (definition list, distinct from inputs) ---- */
+.set-facts__note {
+  font-size: var(--fs-xs);
+  color: var(--text-subtle);
+  margin: 0 0 var(--sp-2);
+}
+.set-facts {
+  margin: 0 0 var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.set-fact {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: 10px var(--sp-4);
+  border-top: 1px solid var(--border);
+}
+.set-fact:first-child {
+  border-top: none;
+}
+.set-fact__label {
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.set-fact__value {
+  margin: 0;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  font-variant-numeric: var(--numeric);
+}
+
+.set-field {
+  margin-top: var(--sp-1);
+}
+
+/* ---- Segmented controls with labels ---- */
+.set-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.set-control__label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+}
+
+/* ---- Number inputs grid ---- */
+.set-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+@media (min-width: 560px) {
+  .set-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---- Preference rows ---- */
+.set-pref {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.set-pref--stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--sp-3);
+}
+.set-pref__icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+.set-pref__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.set-pref__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.set-pref__icon-inline {
+  display: inline-flex;
+  color: var(--text-muted);
+}
+.set-pref__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  max-width: 60ch;
+}
+
+/* ---- Account ---- */
+.set-account {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+.set-account__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-circle);
+  display: grid;
+  place-items: center;
+  background: var(--surface-3);
+  color: var(--text-muted);
+}
+.set-account__meta {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+}
+.set-account__name {
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.set-account__sub {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+/* ---- Apple Health integration ---- */
+.set-ah__notice,
+.set-ah__secret,
+.set-ah__success,
+.set-ah__warning {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-3);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: var(--fs-sm);
+}
+.set-ah__notice {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+}
+.set-ah__copy {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+.set-ah__panel {
+  display: grid;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+}
+.set-ah__panel h3 {
+  margin: 0;
+  font-size: var(--fs-h4);
+}
+.set-ah__preview {
+  display: grid;
+  gap: var(--sp-3);
+}
+.set-ah__type-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-2);
+}
+@media (min-width: 560px) {
+  .set-ah__type-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.set-ah__warning {
+  border-color: var(--color-warning, #f59e0b);
+}
+.set-ah__success {
+  border-color: var(--color-success, #22c55e);
+}
+.set-ah__list {
+  display: grid;
+  gap: var(--sp-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.set-ah__list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--fs-sm);
+}
+.set-ah__token-create {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+}
+@media (min-width: 640px) {
+  .set-ah__token-create {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+.set-ah__secret {
+  display: grid;
+  gap: var(--sp-2);
+  overflow-wrap: anywhere;
+}
+.set-ah__secret code,
+.set-ah code {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+.set-ah__actions {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}

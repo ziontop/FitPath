@@ -1,0 +1,384 @@
+/* ============================================================
+   Dashboard ("Today") — page-specific styles.
+   CONVENTION: every class here is prefixed `dash-` so pages never
+   collide on shared CSS. Do NOT reuse these classes on other pages.
+   Shared design-system classes/components come from styles/* + ui/*.
+   ============================================================ */
+
+/* ---- Hero: activity rings + legend ---- */
+.dash-hero {
+  display: flex;
+  gap: var(--sp-6);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.dash-rings {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+.dash-rings__center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  pointer-events: none;
+}
+.dash-rings__value {
+  font-family: var(--font-num);
+  font-size: 2.4rem;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  color: var(--text);
+  letter-spacing: var(--tracking-tight);
+  font-variant-numeric: var(--numeric);
+  display: inline-flex;
+  align-items: baseline;
+}
+.dash-rings__pct {
+  font-size: 1.2rem;
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  margin-left: 1px;
+}
+.dash-rings__label {
+  font-size: var(--fs-sm);
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+  margin-top: 2px;
+}
+.dash-rings__closed {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-weight: var(--fw-medium);
+  margin-top: 4px;
+}
+
+.dash-legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  flex: 1;
+  min-width: 220px;
+}
+.dash-legend__item {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: center;
+}
+.dash-legend__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-circle);
+  flex-shrink: 0;
+}
+.dash-legend__dot--move {
+  background: var(--ring-move-to);
+}
+.dash-legend__dot--exercise {
+  background: var(--ring-exercise-to);
+}
+.dash-legend__dot--hydrate {
+  background: var(--ring-hydrate-to);
+}
+.dash-legend__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dash-legend__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-2);
+}
+.dash-legend__name {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-weight: var(--fw-medium);
+}
+.dash-legend__val {
+  font-family: var(--font-head);
+  font-weight: var(--fw-semibold);
+  font-size: 1rem;
+  color: var(--text);
+}
+
+/* ---- Setup prompt ---- */
+.dash-setup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+.dash-setup__main {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.dash-setup__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* ---- Metric tiles grid ---- */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+@media (min-width: 760px) {
+  .dash-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---- Workout + Nutrition cards ---- */
+.dash-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-4);
+}
+@media (min-width: 760px) {
+  .dash-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dash-ex-list {
+  display: flex;
+  flex-direction: column;
+}
+.dash-ex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 10px 0;
+  border-top: 1px solid var(--surface-3);
+}
+.dash-ex-row:first-child {
+  border-top: none;
+}
+.dash-ex-name {
+  font-weight: var(--fw-medium);
+}
+.dash-ex-scheme {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Rest-day state */
+.dash-rest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4) 0 var(--sp-2);
+}
+.dash-rest__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+  margin-bottom: var(--sp-1);
+}
+
+/* Nutrition summary */
+.dash-kcal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+.dash-kcal__value {
+  font-family: var(--font-num);
+  font-size: 2.4rem;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  color: var(--text);
+  letter-spacing: var(--tracking-tight);
+  font-variant-numeric: var(--numeric);
+}
+.dash-kcal__sub {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-top: var(--sp-1);
+}
+.dash-ring-caption {
+  font-family: var(--font-num);
+  font-size: 1.05rem;
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  color: var(--text);
+  font-variant-numeric: var(--numeric);
+}
+
+.dash-macro {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dash-macro__meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-sm);
+}
+.dash-macro__name {
+  font-weight: var(--fw-medium);
+}
+
+/* ---- Built from your history (adaptive) ---- */
+.dash-adapt__rows {
+  display: flex;
+  flex-direction: column;
+}
+.dash-adapt__row {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-start;
+  padding: var(--sp-3) 0;
+  border-top: 1px solid var(--surface-3);
+}
+.dash-adapt__row:first-child {
+  border-top: none;
+  padding-top: var(--sp-1);
+}
+.dash-adapt__icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--surface-3);
+  color: var(--text-muted);
+}
+/* One tinted status icon per row; volt reserved for positive performance. */
+.dash-adapt__icon--increase {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+.dash-adapt__icon--start {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+.dash-adapt__icon--reduce {
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+.dash-adapt__icon--deload,
+.dash-adapt__icon--resume,
+.dash-adapt__icon--rest {
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+}
+.dash-adapt__body {
+  flex: 1;
+  min-width: 0;
+}
+.dash-adapt__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+.dash-adapt__label {
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.dash-adapt__delta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  font-variant-numeric: var(--numeric);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-3);
+  white-space: nowrap;
+}
+.dash-adapt__macro {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-variant-numeric: var(--numeric);
+  white-space: nowrap;
+}
+.dash-adapt__reason {
+  margin: 4px 0 0;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.dash-adapt__meta {
+  display: block;
+  margin-top: 6px;
+  font-size: var(--fs-xs);
+  color: var(--text-subtle);
+}
+.dash-adapt__unavailable {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+/* ---- Coach tip ---- */
+.dash-coach {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-start;
+}
+.dash-coach__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+.dash-coach__body {
+  flex: 1;
+  min-width: 0;
+}
+.dash-coach__text {
+  margin: var(--sp-1) 0 var(--sp-3);
+  color: var(--text);
+}
+
+/* ---- Loading skeleton ---- */
+.dash-skel-legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  flex: 1;
+  min-width: 220px;
+}
+.dash-skel-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}

@@ -1,0 +1,442 @@
+/* ============================================================
+   Insights ("Coach") — page-specific styles.
+   CONVENTION: every class here is prefixed `ins-` so pages never
+   collide on shared CSS. Do NOT reuse these classes on other pages.
+   Shared design-system classes/components come from styles/* + ui/*.
+   ============================================================ */
+
+/* ---- View toggle ---- */
+.ins-toolbar {
+  display: flex;
+}
+.ins-seg {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---- Chat ---- */
+.ins-chat-card {
+  overflow: hidden;
+}
+.ins-chat {
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+}
+.ins-chat--empty {
+  min-height: 300px;
+}
+.ins-chat__messages {
+  flex: 1;
+  min-height: 0;
+  max-height: 56vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  background:
+    radial-gradient(900px 320px at 100% -5%, color-mix(in srgb, var(--color-primary) 6%, transparent), transparent),
+    var(--surface-2);
+}
+
+/* First-run centered welcome (until the conversation grows) */
+.ins-welcome {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-3);
+  max-width: 440px;
+  padding: var(--sp-4) 0;
+}
+.ins-welcome__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+.ins-welcome__title {
+  font-family: var(--font-head);
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.ins-welcome__text {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+.ins-welcome__chips {
+  justify-content: center;
+  margin-top: var(--sp-1);
+}
+
+/* Message row + bubble */
+.ins-msg {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-2);
+  max-width: 100%;
+  animation: ins-msg-in var(--dur) var(--ease-out) both;
+}
+.ins-msg--coach {
+  justify-content: flex-start;
+}
+.ins-msg--user {
+  justify-content: flex-end;
+}
+.ins-msg__avatar {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: var(--radius-circle);
+  display: grid;
+  place-items: center;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+.ins-msg__bubble {
+  max-width: min(80%, 560px);
+  padding: 10px 14px;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+}
+.ins-msg--coach .ins-msg__bubble {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+  border-bottom-left-radius: var(--radius-sm);
+  box-shadow: var(--shadow-xs);
+}
+.ins-msg--user .ins-msg__bubble {
+  background: color-mix(in srgb, var(--color-primary) 15%, var(--surface));
+  border-color: color-mix(in srgb, var(--color-primary) 32%, var(--border));
+  color: var(--text);
+  border-bottom-right-radius: var(--radius-sm);
+}
+
+/* Typing / thinking indicator */
+.ins-msg__bubble--typing {
+  padding: 12px 16px;
+}
+.ins-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.ins-typing i {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-circle);
+  background: var(--text-subtle);
+  display: inline-block;
+  animation: ins-bounce 1.2s var(--ease-standard) infinite;
+}
+.ins-typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.ins-typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Footer: starter chips + input bar */
+.ins-chat__foot {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+.ins-starters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.ins-starters__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.ins-starters__label svg {
+  color: var(--color-primary);
+}
+.ins-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.ins-form {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.ins-form .ins-form__input {
+  flex: 1;
+  min-width: 0;
+  border-radius: var(--radius-pill);
+}
+
+/* ---- What your history is changing (adaptive summary) ---- */
+.ins-adapt__tip {
+  margin: 0;
+  font-size: var(--fs-body);
+  color: var(--text);
+  line-height: 1.55;
+}
+.ins-adapt__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--border);
+}
+.ins-adapt__fact {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.ins-adapt__fact svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* ---- Streak metrics (Insights view) ---- */
+.ins-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+@media (min-width: 760px) {
+  .ins-metrics {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---- Pattern insight rows ---- */
+.ins-patterns {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.ins-pattern {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--color-primary);
+  transition: background var(--transition-fast), transform var(--dur-fast) var(--ease-spring);
+}
+.ins-pattern:hover {
+  background: var(--surface-3);
+  transform: translateX(2px);
+}
+.ins-pattern__main {
+  min-width: 0;
+}
+.ins-pattern__title {
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+}
+.ins-pattern__detail {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ---- Daily rhythm ---- */
+.ins-rhythm {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-2);
+}
+@media (min-width: 640px) {
+  .ins-rhythm {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 900px) {
+  .ins-rhythm {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+.ins-rhythm__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.ins-rhythm__icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  background: var(--color-secondary-soft);
+  color: var(--color-secondary);
+}
+.ins-rhythm__meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.ins-rhythm__label {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+.ins-rhythm__value {
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* Rhythm tips */
+.ins-tips {
+  list-style: none;
+  margin: var(--sp-4) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.ins-tips__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+.ins-tips__dot {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border-radius: var(--radius-circle);
+  display: grid;
+  place-items: center;
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  margin-top: 1px;
+}
+
+/* ---- Achievements ---- */
+.ins-badges {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+@media (min-width: 640px) {
+  .ins-badges {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 900px) {
+  .ins-badges {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+.ins-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-3);
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.ins-badge.is-locked {
+  opacity: 0.72;
+}
+.ins-badge__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  background: var(--surface-3);
+  color: var(--text-subtle);
+}
+.ins-badge__label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text);
+  line-height: 1.3;
+}
+.ins-badge__progress {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.ins-badge__count {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-subtle);
+}
+
+/* ---- Loading skeleton ---- */
+.ins-skel-chat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+.ins-skel-chat__me {
+  display: flex;
+  justify-content: flex-end;
+}
+.ins-skel-chat__foot {
+  margin-top: var(--sp-3);
+}
+
+/* ---- Keyframes (prefixed) ---- */
+@keyframes ins-msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes ins-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
